@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa de la Mujer de Las Toscas — ONG Cambios</title>
+    <meta name="description" content="ONG Cambios acompaña a mujeres y familias víctimas de violencia de género con atención profesional, talleres y apoyo comunitario. Desde 1994 en Las Toscas, Canelones, Uruguay.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --violet-dark: #26215C;
+            --violet-mid-dark: #3C3489;
+            --green: #5DCAA5;
+            --green-light: #9FE1CB;
+            --violet-mid: #7F77DD;
+            --violet-light: #CECBF6;
+            --bg-alt: #EEEDFE;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* ── Emergency bar ── */
+        .emergency-bar {
+            background: #b91c1c;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .emergency-bar a {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        /* ── Nav ── */
+        nav {
+            background: var(--violet-dark);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,.3);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            text-decoration: none;
+        }
+        .nav-logo-img {
+            background: #fff;
+            border-radius: 8px;
+            padding: 4px 6px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo-img img {
+            height: 36px;
+            width: auto;
+            display: block;
+        }
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-logo-text .brand {
+            color: var(--green);
+            font-weight: 800;
+            font-size: 1rem;
+            line-height: 1.1;
+        }
+        .nav-logo-text .sub {
+            color: var(--violet-light);
+            font-weight: 400;
+            font-size: 0.75rem;
+            line-height: 1.2;
+        }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--violet-light);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: .2s;
+        }
+        .nav-links a:hover { background: var(--violet-mid-dark); color: #fff; }
+        .nav-links .cta {
+            background: var(--green);
+            color: var(--violet-dark) !important;
+            font-weight: 700 !important;
+        }
+        .nav-links .cta:hover { background: var(--green-light); }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(160deg, #1a1640 0%, var(--violet-dark) 40%, var(--violet-mid-dark) 100%);
+            color: #fff;
+            padding: 80px 24px 90px;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(93,202,165,.12) 0%, transparent 70%);
+            top: -150px; right: -150px;
+            pointer-events: none;
+        }
+        .hero-inner { max-width: 680px; position: relative; }
+        .hero-logo {
+            margin-bottom: 32px;
+        }
+        .hero-logo-card {
+            display: inline-block;
+            background: #fff;
+            border-radius: 20px;
+            padding: 16px 24px;
+            box-shadow: 0 0 0 6px rgba(93,202,165,.25), 0 16px 48px rgba(0,0,0,.35);
+        }
+        .hero-logo-card img {
+            height: 140px;
+            width: auto;
+            display: block;
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .hero h1 .title-main { color: var(--green); display: block; }
+        .hero h1 .title-sub {
+            color: var(--violet-light);
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            font-weight: 500;
+            display: block;
+            margin-top: 6px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--violet-light);
+            max-width: 540px;
+            margin: 0 auto 36px;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: var(--green);
+            color: var(--violet-dark);
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: .2s;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 18px rgba(93,202,165,.45);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255,255,255,.4);
+            transition: .2s;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,.1);
+        }
+
+        /* ── Generic section layout ── */
+        section { padding: 72px 24px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .sec-title { text-align: center; margin-bottom: 48px; }
+        .sec-title h2 {
+            font-size: clamp(1.75rem, 4vw, 2.4rem);
+            font-weight: 800;
+            color: var(--violet-dark);
+            margin-bottom: 10px;
+        }
+        .sec-title p { color: #666; font-size: 1.05rem; max-width: 580px; margin: 0 auto; }
+        .divider {
+            width: 56px;
+            height: 4px;
+            background: var(--green);
+            border-radius: 2px;
+            margin: 14px auto 0;
+        }
+
+        /* ── Services ── */
+        #servicios { background: var(--bg-alt); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 20px;
+        }
+        .svc-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(38,33,92,.07);
+            transition: .2s;
+        }
+        .svc-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(38,33,92,.15); }
+        .svc-icon { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+        .svc-card h3 { color: var(--violet-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+        .svc-card p { color: #666; font-size: 0.88rem; line-height: 1.5; }
+
+        /* ── Impact strip ── */
+        .impact {
+            background: linear-gradient(135deg, var(--violet-mid-dark), var(--violet-dark));
+            color: #fff;
+            padding: 64px 24px;
+            text-align: center;
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 28px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .impact-item h3 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--green);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .impact-item p { color: var(--violet-light); font-size: 0.9rem; font-weight: 500; }
+
+        /* ── Workshops ── */
+        #talleres { background: #fff; }
+        .filter-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 36px;
+        }
+        .fbtn {
+            padding: 8px 20px;
+            border-radius: 24px;
+            border: 2px solid var(--violet-light);
+            background: transparent;
+            color: var(--violet-mid-dark);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: .2s;
+            font-family: inherit;
+        }
+        .fbtn:hover, .fbtn.active {
+            background: var(--violet-mid-dark);
+            border-color: var(--violet-mid-dark);
+            color: #fff;
+        }
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+        }
+        .w-card {
+            background: var(--bg-alt);
+            border-radius: 10px;
+            padding: 18px 16px;
+            border-left: 4px solid var(--green);
+            transition: .2s;
+        }
+        .w-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(38,33,92,.1); }
+        .w-card.hidden { display: none; }
+        .w-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .t-oficios   { background: #FFF3CD; color: #856404; }
+        .t-creativo  { background: #FFE2E8; color: #842029; }
+        .t-salud     { background: #D1E7DD; color: #0F5132; }
+        .t-hogar     { background: #D1ECF1; color: #0C5460; }
+        .t-ninos     { background: #FFECE0; color: #7A3A00; }
+        .w-card h4 { color: var(--violet-dark); font-size: 0.93rem; font-weight: 700; }
+
+        /* ── Workshop CTA ── */
+        .w-cta {
+            background: var(--bg-alt);
+            text-align: center;
+            padding: 72px 24px;
+        }
+        .w-cta h2 {
+            color: var(--violet-dark);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .w-cta p { color: #666; margin-bottom: 28px; font-size: 1.05rem; }
+
+        .btn-wa {
+            background: #25D366;
+            color: #fff;
+            padding: 15px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: .2s;
+        }
+        .btn-wa:hover {
+            background: #1ebe5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 18px rgba(37,211,102,.4);
+        }
+
+        /* ── Donations ── */
+        #donar {
+            background: linear-gradient(135deg, var(--violet-dark), var(--violet-mid-dark));
+            color: #fff;
+        }
+        #donar .sec-title h2 { color: #fff; }
+        #donar .sec-title p { color: var(--violet-light); }
+        .don-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .don-card {
+            background: rgba(255,255,255,.1);
+            border-radius: 12px;
+            padding: 26px 22px;
+            border: 1px solid rgba(255,255,255,.14);
+        }
+        .don-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--green);
+        }
+        .don-card p { color: var(--violet-light); font-size: 0.9rem; line-height: 1.6; }
+        .don-links {
+            margin-top: 36px;
+            text-align: center;
+        }
+        .don-links p { color: var(--violet-light); margin-bottom: 16px; }
+        .don-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        /* ── Contact ── */
+        #contacto { background: var(--bg-alt); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .cnt-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(38,33,92,.07);
+        }
+        .cnt-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .cnt-card h3 {
+            color: var(--violet-dark);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin-bottom: 6px;
+        }
+        .cnt-card a {
+            color: var(--violet-mid-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .cnt-card a:hover { color: var(--green); }
+        .cnt-card p { color: #555; font-size: 0.9rem; }
+        .social-strip {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 36px;
+        }
+        .soc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: .2s;
+            color: #fff;
+        }
+        .soc-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+        .soc-fb { background: #1877F2; }
+        .soc-ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--violet-dark);
+            color: var(--violet-light);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.9rem;
+        }
+        footer p { margin-bottom: 4px; }
+        .heart { color: var(--green); }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: var(--violet-dark);
+                flex-direction: column;
+                padding: 12px 16px 20px;
+                gap: 2px;
+                box-shadow: 0 8px 20px rgba(0,0,0,.3);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero-btns { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-outline { width: 100%; max-width: 300px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Emergency bar -->
+<div class="emergency-bar">
+    🆘 ¿Estás en peligro? Llamá ahora: <a href="tel:08004141">0800 4141</a> &nbsp;—&nbsp; Gratuito · 24 horas · Confidencial
+</div>
+
+<!-- Nav -->
+<nav>
+    <a href="#" class="nav-logo">
+        <div class="nav-logo-img">
+            <img src="Logo_nuevo_ONG_sin_fondo.png" alt="ONG Cambios">
+        </div>
+        <div class="nav-logo-text">
+            <span class="brand">ONG Cambios</span>
+            <span class="sub">Casa de la Mujer de Las Toscas</span>
+        </div>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#talleres">Talleres</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#donar" class="cta">Donar</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-logo">
+            <div class="hero-logo-card">
+                <img src="Logo_nuevo_ONG_sin_fondo.png" alt="ONG Cambios — Casa de la Mujer de Las Toscas">
+            </div>
+        </div>
+        <h1>
+            <span class="title-main">ONG Cambios</span>
+            <span class="title-sub">Casa de la Mujer de Las Toscas</span>
+        </h1>
+        <p>Una organización de voluntarias que ayudan a familias vulnerables, víctimas de violencia de género. Gestionamos donaciones, brindamos terapia psicológica accesible, asesoría legal y canastas de alimentos. Dictamos talleres que buscan integrar, contener y ser herramientas de inserción laboral o emprendedurismo.</p>
+        <div class="hero-btns">
+            <a href="https://wa.me/59895895183?text=Hola%2C%20necesito%20ayuda" class="btn-primary">Pedir ayuda</a>
+            <a href="#donar" class="btn-outline">Quiero donar</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="servicios">
+    <div class="container">
+        <div class="sec-title">
+            <h2>Nuestros servicios</h2>
+            <p>Atención integral y gratuita para mujeres y familias que lo necesitan</p>
+            <div class="divider"></div>
+        </div>
+        <div class="services-grid">
+            <div class="svc-card">
+                <span class="svc-icon">🧠</span>
+                <h3>Terapia psicológica</h3>
+                <p>Acompañamiento profesional para sanar y reconstruir</p>
+            </div>
+            <div class="svc-card">
+                <span class="svc-icon">⚖️</span>
+                <h3>Asesoría legal</h3>
+                <p>Orientación jurídica en situaciones de violencia</p>
+            </div>
+            <div class="svc-card">
+                <span class="svc-icon">🧺</span>
+                <h3>Canastas de alimentos</h3>
+                <p>Apoyo alimentario para familias en situación vulnerable</p>
+            </div>
+            <div class="svc-card">
+                <span class="svc-icon">🛠️</span>
+                <h3>Talleres formativos</h3>
+                <p>Capacitación en oficios y habilidades para la autonomía</p>
+            </div>
+            <div class="svc-card">
+                <span class="svc-icon">💝</span>
+                <h3>Gestión de donaciones</h3>
+                <p>Recibimos y distribuimos ropa, calzado y alimentos</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact -->
+<section class="impact">
+    <div class="impact-grid">
+        <div class="impact-item"><h3>30+</h3><p>Años de trabajo</p></div>
+        <div class="impact-item"><h3>1994</h3><p>Fundación</p></div>
+        <div class="impact-item"><h3>+20</h3><p>Talleres activos</p></div>
+        <div class="impact-item"><h3>100%</h3><p>Voluntarias</p></div>
+    </div>
+</section>
+
+<!-- Workshops -->
+<section id="talleres">
+    <div class="container">
+        <div class="sec-title">
+            <h2>Talleres</h2>
+            <p>Espacios de aprendizaje, autonomía y comunidad abiertos a toda la comunidad</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="filter-btns">
+            <button class="fbtn active" data-filter="todos">Todos</button>
+            <button class="fbtn" data-filter="oficios">Oficios</button>
+            <button class="fbtn" data-filter="creativo">Creativo</button>
+            <button class="fbtn" data-filter="salud">Salud y bienestar</button>
+            <button class="fbtn" data-filter="hogar">Hogar y cocina</button>
+            <button class="fbtn" data-filter="ninos">Para niños</button>
+        </div>
+
+        <div class="workshops-grid">
+            <div class="w-card" data-cat="oficios"><span class="w-tag t-oficios">Oficios</span><h4>Soldadura</h4></div>
+            <div class="w-card" data-cat="oficios"><span class="w-tag t-oficios">Oficios</span><h4>Carpintería</h4></div>
+            <div class="w-card" data-cat="oficios"><span class="w-tag t-oficios">Oficios</span><h4>Costura y confección</h4></div>
+            <div class="w-card" data-cat="oficios"><span class="w-tag t-oficios">Oficios</span><h4>Costura — arreglos</h4></div>
+            <div class="w-card" data-cat="oficios"><span class="w-tag t-oficios">Oficios</span><h4>Lencería y trajes de baño</h4></div>
+
+            <div class="w-card" data-cat="creativo"><span class="w-tag t-creativo">Creativo</span><h4>Maquillaje profesional</h4></div>
+            <div class="w-card" data-cat="creativo"><span class="w-tag t-creativo">Creativo</span><h4>Automaquillaje</h4></div>
+            <div class="w-card" data-cat="creativo"><span class="w-tag t-creativo">Creativo</span><h4>Técnica de marmolado</h4></div>
+            <div class="w-card" data-cat="creativo"><span class="w-tag t-creativo">Creativo</span><h4>Tejido</h4></div>
+            <div class="w-card" data-cat="creativo"><span class="w-tag t-creativo">Creativo</span><h4>Reciclaje creativo</h4></div>
+
+            <div class="w-card" data-cat="salud"><span class="w-tag t-salud">Salud</span><h4>Medicina herbal</h4></div>
+            <div class="w-card" data-cat="salud"><span class="w-tag t-salud">Salud</span><h4>Terapias bioenergéticas</h4></div>
+            <div class="w-card" data-cat="salud"><span class="w-tag t-salud">Salud</span><h4>Reiki</h4></div>
+            <div class="w-card" data-cat="salud"><span class="w-tag t-salud">Salud</span><h4>Cannabis medicinal</h4></div>
+
+            <div class="w-card" data-cat="hogar"><span class="w-tag t-hogar">Hogar</span><h4>Huerta</h4></div>
+            <div class="w-card" data-cat="hogar"><span class="w-tag t-hogar">Hogar</span><h4>Cocina y repostería</h4></div>
+            <div class="w-card" data-cat="hogar"><span class="w-tag t-hogar">Hogar</span><h4>Consultas tecnológicas</h4></div>
+
+            <div class="w-card" data-cat="ninos"><span class="w-tag t-ninos">Niños</span><h4>Música para niños</h4></div>
+            <div class="w-card" data-cat="ninos"><span class="w-tag t-ninos">Niños</span><h4>Teatro</h4></div>
+        </div>
+    </div>
+</section>
+
+<!-- Workshop CTA -->
+<div class="w-cta">
+    <div class="container">
+        <h2>¿Querés inscribirte en un taller?</h2>
+        <p>Escribinos por WhatsApp y te contamos fechas, horarios y disponibilidad</p>
+        <a href="https://wa.me/59895895183?text=Hola%2C%20quiero%20inscribirme%20en%20un%20taller" class="btn-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Inscribirme por WhatsApp
+        </a>
+    </div>
+</div>
+
+<!-- Donations -->
+<section id="donar">
+    <div class="container">
+        <div class="sec-title">
+            <h2>Cómo podés ayudar</h2>
+            <p>Cada aporte sostiene nuestro trabajo con las mujeres de la comunidad</p>
+            <div class="divider"></div>
+        </div>
+        <div class="don-grid">
+            <div class="don-card">
+                <h3>🏦 Transferencia bancaria</h3>
+                <p>Donaciones monetarias a través del BROU. Escribinos para recibir los datos de la cuenta.</p>
+            </div>
+            <div class="don-card">
+                <h3>👗 Ropa y calzado</h3>
+                <p>Ropa y calzado en buen estado para redistribuir entre familias que lo necesitan.</p>
+            </div>
+            <div class="don-card">
+                <h3>🥫 Alimentos</h3>
+                <p>Alimentos no perecederos para las canastas de apoyo a familias vulnerables.</p>
+            </div>
+            <div class="don-card">
+                <h3>🙋 Voluntariado</h3>
+                <p>Sumá tu tiempo y talento. Siempre necesitamos voluntarias para talleres, atención y gestión.</p>
+            </div>
+        </div>
+        <div class="don-links">
+            <p>Para recibir los datos bancarios o coordinar una donación:</p>
+            <div class="don-btns">
+                <a href="https://wa.me/59895895183?text=Hola%2C%20quiero%20hacer%20una%20donaci%C3%B3n" class="btn-wa">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+                <a href="mailto:ongcambios12@gmail.com" class="btn-primary">Enviar mail</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contacto">
+    <div class="container">
+        <div class="sec-title">
+            <h2>Contacto</h2>
+            <p>Estamos para escucharte</p>
+            <div class="divider"></div>
+        </div>
+        <div class="contact-grid">
+            <div class="cnt-card">
+                <span class="cnt-icon">📱</span>
+                <h3>WhatsApp</h3>
+                <a href="https://wa.me/59895895183">095 895 183</a>
+            </div>
+            <div class="cnt-card">
+                <span class="cnt-icon">📧</span>
+                <h3>Correo</h3>
+                <a href="mailto:ongcambios12@gmail.com">ongcambios12@gmail.com</a>
+            </div>
+            <div class="cnt-card">
+                <span class="cnt-icon">📍</span>
+                <h3>Ubicación</h3>
+                <p>Las Toscas, Canelones, Uruguay</p>
+            </div>
+            <div class="cnt-card">
+                <span class="cnt-icon">🚨</span>
+                <h3>Línea de emergencia</h3>
+                <a href="tel:08004141">0800 4141</a>
+                <p style="font-size:0.8rem;color:#999;margin-top:4px">Gratuito · 24 horas</p>
+            </div>
+        </div>
+        <div class="social-strip">
+            <a href="https://www.facebook.com/p/Casa-de-la-mujer-Las-Toscas-100076309115949/" target="_blank" rel="noopener" class="soc-link soc-fb">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook
+            </a>
+            <a href="https://www.instagram.com/casadelamujerdelastoscas/?hl=es" target="_blank" rel="noopener" class="soc-link soc-ig">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                Instagram
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p><strong>ONG Cambios · Casa de la Mujer de Las Toscas</strong></p>
+    <p>Desde 1994 · Las Toscas, Canelones, Uruguay</p>
+    <p style="margin-top:12px;font-size:0.8rem">Hecho con <span class="heart">♥</span> por voluntarias</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    document.querySelectorAll('#navLinks a').forEach(a => {
+        a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    document.querySelectorAll('.fbtn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const cat = this.dataset.filter;
+            document.querySelectorAll('.w-card').forEach(card => {
+                card.classList.toggle('hidden', cat !== 'todos' && card.dataset.cat !== cat);
+            });
+        });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - 76, behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
